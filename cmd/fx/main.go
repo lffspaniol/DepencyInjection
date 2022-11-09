@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
+	fxinjection "dependencyInjection/containers/fxInjection"
 	remoteservice "dependencyInjection/remoteService"
-	fxinjection "dependencyInjection/remoteService/fxInjection"
 	"fmt"
 	"net"
 	"net/http"

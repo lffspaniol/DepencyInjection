@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dependencyInjection/remoteService/wire"
+	"dependencyInjection/containers/wire"
 	"fmt"
 	"html"
 	"log"

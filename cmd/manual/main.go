@@ -1,7 +1,7 @@
 package main
 
 import (
-	"dependencyInjection/remoteService/manual"
+	"dependencyInjection/containers/manual"
 	"fmt"
 	"html"
 	"log"
@@ -23,7 +23,7 @@ func (a *app) HandleService2(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	app := &app{
-		container: manual.CreateContainer(),
+		container: manual.CreateContainer(1),
 	}
 
 	http.HandleFunc("/service1", app.HandleService1)

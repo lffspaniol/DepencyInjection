@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	contextinjection "dependencyInjection/remoteService/contextInjection"
+	contextinjection "dependencyInjection/containers/contextInjection"
 	"fmt"
 	"html"
 	"log"

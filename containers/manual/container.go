@@ -8,8 +8,8 @@ type Container struct {
 }
 
 // CreateContainer creates a container for the remoteService service.
-func CreateContainer() *Container {
-	r := remoteservice.NewRemoteService(1)
+func CreateContainer(t float64) *Container {
+	r := remoteservice.NewRemoteService(t)
 	r2 := remoteservice.NewRemoteService2(r)
 	return &Container{
 		Remoteservice:  r,
