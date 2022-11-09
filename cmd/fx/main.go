@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	fxinjection "dependencyInjection/containers/fxInjection"
 	remoteservice "dependencyInjection/remoteService"
 	"fmt"
 	"net"
@@ -12,7 +11,7 @@ import (
 	"go.uber.org/zap"
 )
 
-func NewServeMux(sevice1 *fxinjection.Service1Handler, sevice2 *fxinjection.Service2Handler) *http.ServeMux {
+func NewServeMux(sevice1 *Handler1, sevice2 *Handler2) *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.Handle("/service1", sevice1)
 	mux.Handle("/service2", sevice2)
@@ -46,8 +45,8 @@ func main() {
 				remoteservice.NewRemoteService,
 				remoteservice.NewRemoteService2,
 				NewServeMux,
-				fxinjection.NewService1Handler,
-				fxinjection.NewService1Handler2,
+				NewHandlerForService1,
+				NewHandlerForService2,
 				zap.NewProduction,
 			),
 			fx.Invoke(NewHTTPServer),

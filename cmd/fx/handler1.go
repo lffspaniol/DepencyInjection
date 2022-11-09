@@ -1,4 +1,4 @@
-package fxinjection
+package main
 
 import (
 	remoteservice "dependencyInjection/remoteService"
@@ -9,21 +9,21 @@ import (
 	"go.uber.org/zap"
 )
 
-type Service1Handler struct {
+type Handler1 struct {
 	remoteservice *remoteservice.Service1
 	log           *zap.Logger
 }
 
 // HandlewService1 is the handler for the service1 endpoint.
-func (h *Service1Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *Handler1) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	h.log.Info("Service1Handler.ServeHTTP")
 	h.remoteservice.Sleep()
 	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
 }
 
 // NewEchoHandler builds a new EchoHandler.
-func NewService1Handler(r *remoteservice.Service1, log *zap.Logger) *Service1Handler {
-	return &Service1Handler{
+func NewHandlerForService1(r *remoteservice.Service1, log *zap.Logger) *Handler1 {
+	return &Handler1{
 		remoteservice: r,
 		log:           log,
 	}
