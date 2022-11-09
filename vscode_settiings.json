@@ -1,0 +1,10 @@
+{
+	"gopls": {
+		"ui.semanticTokens": true,
+		"initializationOptions": {
+			"buildFlags": [
+				"-tags=wireinject"
+			]
+		}
+	}
+}
