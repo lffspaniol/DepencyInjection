@@ -4,27 +4,28 @@
 package wire
 
 import (
-	remoteservice "dependencyInjection/remoteService"
+	"dependencyInjection/Services/service1"
+	"dependencyInjection/Services/service2"
 
 	"github.com/google/wire"
 )
 
 type Container struct {
-	Remoteservice  *remoteservice.Service1
-	Remoteservice2 *remoteservice.Service2
+	Service1 *service1.Service
+	Service2 *service2.Service
 }
 
-func newContainer(Remoteservice *remoteservice.Service1, Remoteservice2 *remoteservice.Service2) Container {
+func newContainer(Remoteservice *service1.Service, Remoteservice2 *service2.Service) Container {
 	return Container{
-		Remoteservice:  Remoteservice,
-		Remoteservice2: Remoteservice2,
+		Service1: Remoteservice,
+		Service2: Remoteservice2,
 	}
 }
 
 func CreateContainer(time float64) Container {
 	wire.Build(
-		remoteservice.NewRemoteService,
-		remoteservice.NewRemoteService2,
+		service1.NewService,
+		service2.NewService2,
 		newContainer,
 	)
 	return Container{}

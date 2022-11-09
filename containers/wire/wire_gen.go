@@ -7,28 +7,29 @@
 package wire
 
 import (
-	"dependencyInjection/remoteService"
+	"dependencyInjection/Services/service1"
+	"dependencyInjection/Services/service2"
 )
 
 // Injectors from wire.go:
 
 func CreateContainer(time float64) Container {
-	service1 := remoteservice.NewRemoteService(time)
-	service2 := remoteservice.NewRemoteService2(service1)
-	container := newContainer(service1, service2)
+	service := service1.NewService(time)
+	service2Service := service2.NewService2(service)
+	container := newContainer(service, service2Service)
 	return container
 }
 
 // wire.go:
 
 type Container struct {
-	Remoteservice  *remoteservice.Service1
-	Remoteservice2 *remoteservice.Service2
+	Service1 *service1.Service
+	Service2 *service2.Service
 }
 
-func newContainer(Remoteservice *remoteservice.Service1, Remoteservice2 *remoteservice.Service2) Container {
+func newContainer(Remoteservice *service1.Service, Remoteservice2 *service2.Service) Container {
 	return Container{
-		Remoteservice:  Remoteservice,
-		Remoteservice2: Remoteservice2,
+		Service1: Remoteservice,
+		Service2: Remoteservice2,
 	}
 }

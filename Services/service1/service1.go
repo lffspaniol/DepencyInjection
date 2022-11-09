@@ -1,15 +1,15 @@
-package remoteservice
+package service1
 
 import (
 	"fmt"
 	"time"
 )
 
-type Service1 struct {
+type Service struct {
 	SleepTime float64
 }
 
-func (r *Service1) Sleep() {
+func (r *Service) Sleep() {
 	// ...
 	fmt.Println("Sleeping...for:", r.SleepTime)
 	// Calling Sleep method
@@ -20,6 +20,6 @@ func (r *Service1) Sleep() {
 
 }
 
-func NewRemoteService(t float64) *Service1 {
-	return &Service1{SleepTime: t}
+func NewService(t float64) *Service {
+	return &Service{SleepTime: t}
 }

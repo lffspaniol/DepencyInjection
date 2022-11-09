@@ -2,7 +2,7 @@ package contextinjection
 
 import (
 	"context"
-	remoteservice "dependencyInjection/remoteService"
+	"dependencyInjection/Services/service1"
 )
 
 type key string
@@ -10,17 +10,17 @@ type key string
 const ctxkey = key("RemoteService")
 
 // ToContext: add a new RemoteService to the context
-func ToContext(ctx context.Context, r remoteservice.Service1) context.Context {
+func ToContext(ctx context.Context, r service1.Service) context.Context {
 	return context.WithValue(ctx, ctxkey, r)
 }
 
-func FromContext(ctx context.Context) remoteservice.Service1 {
+func FromContext(ctx context.Context) service1.Service {
 	// Get the RemoteService from the context
-	r, _ := ctx.Value(ctxkey).(remoteservice.Service1)
+	r, _ := ctx.Value(ctxkey).(service1.Service)
 
 	return r
 }
 
 func NewRemoteService(sleepTime float64) context.Context {
-	return ToContext(context.Background(), remoteservice.Service1{SleepTime: sleepTime})
+	return ToContext(context.Background(), service1.Service{SleepTime: sleepTime})
 }

@@ -2,7 +2,8 @@ package main
 
 import (
 	"context"
-	remoteservice "dependencyInjection/remoteService"
+	"dependencyInjection/Services/service1"
+	"dependencyInjection/Services/service2"
 	"fmt"
 	"net"
 	"net/http"
@@ -42,8 +43,8 @@ func main() {
 		New(
 			fx.Provide(
 				func() float64 { return 1 },
-				remoteservice.NewRemoteService,
-				remoteservice.NewRemoteService2,
+				service2.NewService2,
+				service1.NewService,
 				NewServeMux,
 				NewHandlerForService1,
 				NewHandlerForService2,

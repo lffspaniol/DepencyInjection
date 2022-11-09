@@ -1,7 +1,7 @@
 package main
 
 import (
-	remoteservice "dependencyInjection/remoteService"
+	"dependencyInjection/Services/service1"
 	"fmt"
 	"html"
 	"net/http"
@@ -10,7 +10,7 @@ import (
 )
 
 type Handler1 struct {
-	remoteservice *remoteservice.Service1
+	remoteservice *service1.Service
 	log           *zap.Logger
 }
 
@@ -22,7 +22,7 @@ func (h *Handler1) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 // NewEchoHandler builds a new EchoHandler.
-func NewHandlerForService1(r *remoteservice.Service1, log *zap.Logger) *Handler1 {
+func NewHandlerForService1(r *service1.Service, log *zap.Logger) *Handler1 {
 	return &Handler1{
 		remoteservice: r,
 		log:           log,
