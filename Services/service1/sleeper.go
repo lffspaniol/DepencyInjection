@@ -5,11 +5,11 @@ import (
 	"time"
 )
 
-type Service struct {
+type SleepService struct {
 	SleepTime float64
 }
 
-func (r *Service) Sleep() {
+func (r *SleepService) Sleep() {
 	// ...
 	fmt.Println("Sleeping...for:", r.SleepTime)
 	// Calling Sleep method
@@ -20,6 +20,6 @@ func (r *Service) Sleep() {
 
 }
 
-func NewService(t float64) *Service {
-	return &Service{SleepTime: t}
+func NewService(t float64) *SleepService {
+	return &SleepService{SleepTime: t}
 }

@@ -9,27 +9,21 @@ import (
 	"net/http"
 )
 
-func HandleService1(w http.ResponseWriter, r *http.Request) {
-	s := service1.Service{
-		SleepTime: 1.0,
-	}
-	s.Sleep()
-	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
-}
-func HandleService2(w http.ResponseWriter, r *http.Request) {
-	s := service1.Service{
+func main() {
+	s := service1.SleepService{
 		SleepTime: 1,
 	}
-	s2 := service2.Service{
-		Service: &s,
+	s2 := service2.Person{
+		SleepService: &s,
 	}
-	s2.Sleep()
-	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
-}
-
-func main() {
-	http.HandleFunc("/service1", HandleService1)
-	http.HandleFunc("/service2", HandleService2)
+	http.HandleFunc("/service1", func(w http.ResponseWriter, r *http.Request) {
+		s.Sleep()
+		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+	})
+	http.HandleFunc("/service2", func(w http.ResponseWriter, r *http.Request) {
+		s2.Sleep()
+		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+	})
 
 	log.Println("Listening on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))

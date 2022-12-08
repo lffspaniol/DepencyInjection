@@ -11,12 +11,12 @@ import (
 func main() {
 	container := wire.CreateContainer(1)
 	http.HandleFunc("/service1", func(w http.ResponseWriter, r *http.Request) {
-		container.Service1.Sleep()
+		container.SleepService.Sleep()
 		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
 	})
 
 	http.HandleFunc("/service2", func(w http.ResponseWriter, r *http.Request) {
-		container.Service2.Sleep()
+		container.Person.Sleep()
 		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
 	})
 

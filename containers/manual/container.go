@@ -6,8 +6,8 @@ import (
 )
 
 type Container struct {
-	Remoteservice  *service1.Service
-	Remoteservice2 *service2.Service
+	Remoteservice  *service1.SleepService
+	Remoteservice2 *service2.Person
 }
 
 // CreateContainer creates a container for the remoteService service.

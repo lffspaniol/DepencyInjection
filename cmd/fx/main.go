@@ -14,7 +14,7 @@ import (
 )
 
 type Handler2 struct {
-	remoteservice *service2.Service
+	remoteservice *service2.Person
 	log           *zap.Logger
 }
 
@@ -26,7 +26,7 @@ func (h *Handler2) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 // NewEchoHandler builds a new EchoHandler.
-func NewHandlerForService2(remoteservice *service2.Service, zap *zap.Logger) *Handler2 {
+func NewHandlerForService2(remoteservice *service2.Person, zap *zap.Logger) *Handler2 {
 	return &Handler2{
 		remoteservice: remoteservice,
 		log:           zap,
@@ -34,7 +34,7 @@ func NewHandlerForService2(remoteservice *service2.Service, zap *zap.Logger) *Ha
 }
 
 type Handler1 struct {
-	remoteservice *service1.Service
+	remoteservice *service1.SleepService
 	log           *zap.Logger
 }
 
@@ -46,7 +46,7 @@ func (h *Handler1) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 // NewEchoHandler builds a new EchoHandler.
-func NewHandlerForService1(r *service1.Service, log *zap.Logger) *Handler1 {
+func NewHandlerForService1(r *service1.SleepService, log *zap.Logger) *Handler1 {
 	return &Handler1{
 		remoteservice: r,
 		log:           log,

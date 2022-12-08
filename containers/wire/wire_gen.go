@@ -14,22 +14,22 @@ import (
 // Injectors from wire.go:
 
 func CreateContainer(time float64) Container {
-	service := service1.NewService(time)
-	service2Service := service2.NewService2(service)
-	container := newContainer(service, service2Service)
+	sleepService := service1.NewService(time)
+	person := service2.NewService2(sleepService)
+	container := newContainer(sleepService, person)
 	return container
 }
 
 // wire.go:
 
 type Container struct {
-	Service1 *service1.Service
-	Service2 *service2.Service
+	SleepService *service1.SleepService
+	Person       *service2.Person
 }
 
-func newContainer(Remoteservice *service1.Service, Remoteservice2 *service2.Service) Container {
+func newContainer(SleepService *service1.SleepService, Person *service2.Person) Container {
 	return Container{
-		Service1: Remoteservice,
-		Service2: Remoteservice2,
+		SleepService: SleepService,
+		Person:       Person,
 	}
 }
