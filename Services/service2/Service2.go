@@ -5,8 +5,16 @@ import (
 	"log"
 )
 
+type Sleeper interface {
+	Sleep()
+}
+
+// type Service struct {
+// 	Service *service1.Service
+// }
+
 type Service struct {
-	Service *service1.Service
+	Service Sleeper
 }
 
 func (r *Service) Sleep() {
